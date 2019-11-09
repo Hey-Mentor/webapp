@@ -8,7 +8,7 @@
 
 .App-header {
   background-color: white;
-  min-height: 100vh;
+  min-height: 5vh;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -21,6 +21,10 @@
   color: #09d3ac;
 }
 
+.menteeContainer {
+  height: 100%;
+  flex-direction: column;
+}
 .mentee:hover {
   background-color: #d9f0f8 !important;
   cursor: pointer;
@@ -28,4 +32,10 @@
 
 .mentee.selected:hover {
   background-color: #1caee5 !important;
+}
+
+#root {
+  min-height: 100vw;
+  display: flex;
+  align-items: stretch;
 }

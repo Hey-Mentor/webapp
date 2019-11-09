@@ -19,15 +19,16 @@ export class MenteeContainer extends React.Component<MenteeContainerProps> {
         messageHighlight={x.messageHighlight}
         name={x.name}
         isSelected={x.id === this.props.selectedId}
+        onMenteeSelected={this.props.onMenteeSelected}
       ></Mentee>
     ));
     return (
       <div
+        className={"menteeContainer"}
         style={{
-          marginTop: "50px",
           borderTop: "1px",
-          borderRight: "0px",
-          borderLeft: "0px",
+          borderRight: "1px",
+          borderLeft: "1px",
           borderBottom: "0px",
           borderStyle: "solid",
           borderColor: "grey"
