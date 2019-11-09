@@ -51,7 +51,10 @@ export class Mentee extends React.Component<MenteeProps> {
     };
 
     return (
-      <div style={style}>
+      <div
+        style={style}
+        className={`mentee ${this.props.isSelected ? "selected" : ""}`}
+      >
         <img src={this.props.imgSrc} style={imagestyle}></img>
         <div style={{ color: "#3B484E", width: "300px" }}>
           <div
