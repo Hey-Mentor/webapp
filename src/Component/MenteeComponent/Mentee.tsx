@@ -12,11 +12,11 @@ export class Mentee extends React.Component<MenteeProps> {
       fontSize: "1em",
       display: "flex",
       flexDirection: "row",
-      maxWidth: 400,
+      minWidth: 400,
       borderTop: "0px",
-      borderRight: "1px",
+      borderRight: "0px",
       borderBottom: "1px",
-      borderLeft: "1px",
+      borderLeft: "0px",
       borderStyle: "solid",
       borderColor: "grey",
       backgroundColor: this.props.isSelected ? "#D9F0F8" : "#FFFDFE"
@@ -54,6 +54,10 @@ export class Mentee extends React.Component<MenteeProps> {
       <div
         style={style}
         className={`mentee ${this.props.isSelected ? "selected" : ""}`}
+        onClick={() =>
+          this.props.onMenteeSelected &&
+          this.props.onMenteeSelected(this.props.id)
+        }
       >
         <img src={this.props.imgSrc} style={imagestyle}></img>
         <div style={{ color: "#3B484E", width: "300px" }}>
