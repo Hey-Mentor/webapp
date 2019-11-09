@@ -1,14 +1,16 @@
 import React, { Component } from 'react';
-import { Input, Menu, Segment, Image } from 'semantic-ui-react'
-import { Route } from 'react-router-dom'
+import { Input, Menu, Segment, Image } from 'semantic-ui-react';
+import  {BrowserRouter as Router, Switch, Route, Link} from 'react-router-dom';
 export default class Home extends Component {
     componentDidMount()
     {
-      console.log('mounted!');
+      this.state.activeItem = 'home'
     }
     state = {}
 
-  handleItemClick = (e, { name }) => alert('Hello!')
+  handleItemClick = (e, { name }) => {
+      this.setState({ activeItem: name });
+  }
 
   render() {
     const { activeItem } = this.state
@@ -16,28 +18,30 @@ export default class Home extends Component {
     
         return (
           <div>
-            <Image src='Assets/heymentorsplash.png'></Image>
+            
             <Menu pointing>
               <Menu.Item
                 name='home'
                 active={activeItem === 'home'}
                 onClick={this.handleItemClick}
               />
+              <Menu.Item 
+                name='about'
+                active={activeItem === 'about'}
+                onClick={this.handleItemClick}
+              />
+              
               <Menu.Item
                 name='messages'
                 active={activeItem === 'messages'}
                 onClick={this.handleItemClick}
               />
               <Menu.Item
-                name='friends'
+                name='mentors'
                 active={activeItem === 'friends'}
                 onClick={this.handleItemClick}
               />
-              <Menu.Menu position='right'>
-                <Menu.Item>
-                  <Input icon='search' placeholder='Search...' />
-                </Menu.Item>
-              </Menu.Menu>
+              
             </Menu>
     
             
