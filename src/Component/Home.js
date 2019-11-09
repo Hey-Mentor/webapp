@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
-import { Input, Menu, Segment } from 'semantic-ui-react'
+import { Input, Menu, Segment, Image } from 'semantic-ui-react'
+import { Route } from 'react-router-dom'
 export default class Home extends Component {
     componentDidMount()
     {
@@ -7,7 +8,7 @@ export default class Home extends Component {
     }
     state = {}
 
-  handleItemClick = (e, { name }) => this.setState({ activeItem: name })
+  handleItemClick = (e, { name }) => alert('Hello!')
 
   render() {
     const { activeItem } = this.state
@@ -15,6 +16,7 @@ export default class Home extends Component {
     
         return (
           <div>
+            <Image src='Assets/heymentorsplash.png'></Image>
             <Menu pointing>
               <Menu.Item
                 name='home'
@@ -38,9 +40,7 @@ export default class Home extends Component {
               </Menu.Menu>
             </Menu>
     
-            <Segment>
-              <img src='https://react.semantic-ui.com/images/wireframe/paragraph.png' />
-            </Segment>
+            
           </div>
         )
       }
