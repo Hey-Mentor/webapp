@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <link rel="icon" href="%PUBLIC_URL%/favicon.ico" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="theme-color" content="#000000" />
+    <meta
+      name="description"
+      content="Web site created using create-react-app"
+    />
+    <link rel="apple-touch-icon" href="logo192.png" />
+    <!--
+      manifest.json provides metadata used when your web app is installed on a
+      user's mobile device or desktop. See https://developers.google.com/web/fundamentals/web-app-manifest/
+    -->
+    <link rel="manifest" href="%PUBLIC_URL%/manifest.json" />
+    <!--
+      Notice the use of %PUBLIC_URL% in the tags above.
+      It will be replaced with the URL of the `public` folder during the build.
+      Only files inside the `public` folder can be referenced from the HTML.
+
+      Unlike "/favicon.ico" or "favicon.ico", "%PUBLIC_URL%/favicon.ico" will
+      work correctly both with client-side routing and a non-root public URL.
+      Learn how to configure a non-root public URL by running `npm run build`.
+    -->
+    <title>React App</title>
+
+    <style>
+            ul {
+              list-style-type: none;
+              margin: 0;
+              padding: 0;
+              
+            }
+            
+            ul li {
+                padding: 0;
+                font-size: larger;
+
+                padding-top: 15px;
+                padding-bottom: 15px;
+                padding-left: 5px;
+            }
+
+            table{
+                width: 100%;
+            }
+
+            .tablePreviewImage{
+                width: 50px;
+                top: 0;
+                left: 0;
+            }
+            #leftColumn{
+                width: 50px;
+            }
+            
+            a {
+                text-decoration:none;
+            }
+
+            .spanner{
+                padding-left: 5px;
+            }
+            
+    </style>
+
+  </head>
+  <body>
+    <noscript>You need to enable JavaScript to run this app.</noscript>
+    <div id="root">
+
+        <ul id="list"></ul>
+        
+    </div>
+
+    <script>
+        var months = [ "January", "February", "March", "April", "May", "June", 
+           "July", "August", "September", "October", "November", "December" ];
+
+
+        var fakeMessage = new Object();
+        fakeMessage.text = 'Welcome https://www.figma.com/file/2TOYmQtfx3HTq11em2wZ81/Hey-Mentor---vNext?node-id=1922%3A101 to geeks for geeks!  sadas asd as www.vg.no og https://www.facebook.com og ';
+        var tempDate = new Date(); 
+
+        fakeMessage.date = tempDate;
+
+        linkFinder(fakeMessage);
+        linkFinder(fakeMessage);
+        linkFinder(fakeMessage);        
+
+        
+        function linkFinder(message) {
+            /** 
+                
+            **/
+            var regtest = new RegExp(/(https?:\/\/(?:www\.|(?!www))[a-zA-Z0-9][a-zA-Z0-9-]+[a-zA-Z0-9]\.[^\s]{2,}|www\.[a-zA-Z0-9][a-zA-Z0-9-]+[a-zA-Z0-9]\.[^\s]{2,}|https?:\/\/(?:www\.|(?!www))[a-zA-Z0-9]+\.[^\s]{2,}|www\.[a-zA-Z0-9]+\.[^\s]{2,})/g);
+           
+
+
+            var listMonth = document.createElement("LI");
+
+            var txtMonthYear = document.createTextNode(
+                months[message.date.getMonth()] + ' - ' + (message.date.getYear() + 1900)
+            );
+            var span = document.createElement(span);
+            span.classList.add('spanner');
+            span.appendChild(txtMonthYear);
+
+            listMonth.appendChild(span); 
+            //listMonth.className('122019');
+
+            //Grouping for specific month
+            var linkList = document.createElement("UL");
+            listMonth.appendChild(linkList);
+
+            //Looping through all links
+            message.text.match(regtest).forEach((element) =>{
+                //Creating a table
+                var table =document.createElement("TABLE");
+                linkList.appendChild(table);
+
+                //Row 1
+                var tr = document.createElement("TR");
+                table.appendChild(tr);
+
+                //the Link image column than spans two rows
+                var td = document.createElement("TD");
+                var img = new Image();
+                img.className = 'tablePreviewImage';
+                img.src = 'https://media.istockphoto.com/photos/preview-digital-photo-new-technology-computer-picture-id638495180?s=170x170';
+                img.onclick = function() {
+                    window.location.href = element;
+                };
+                td.appendChild(img);
+
+
+                td.id = 'leftColumn';
+                td.rowSpan = "2";
+                tr.appendChild(td);
+
+                //the Link Title
+                var td2 = document.createElement("TD");
+                var bold = document.createElement("B");
+                var linkTitle = document.createTextNode('Title of the webpage');
+                bold.appendChild(linkTitle);
+                td2.appendChild(bold);
+                tr.appendChild(td2);
+
+                //Row 2
+                var tr2 = document.createElement("TR");
+                table.appendChild(tr2);
+
+                //The link
+                var td21 = document.createElement("TD");
+                tr2.appendChild(td21);
+
+                //List item for specific link (UL LI UL LI)
+                var linkItem = document.createElement("LI");
+                linkList.appendChild(linkItem)
+
+                //creating link 
+                var a = document.createElement('A');
+                a.href = element;
+                var textnode = document.createTextNode(element);
+                a.appendChild(textnode);
+
+                //adding the new link to the list
+                td21.appendChild(a);
+
+                document.getElementById("list").appendChild(listMonth);
+                console.log('element: ' + element);
+            });
+        } 
+    </script>
+  </body>
+</html>
