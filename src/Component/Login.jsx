@@ -1,65 +1,101 @@
 import React from 'react'
 
-import { Button, Form, Grid, Header, Image, Message, Segment } from 'semantic-ui-react'
+import { Button, Form, Icon, Grid, Header, Image, Message, Segment } from 'semantic-ui-react'
+import FacebookLogin from './FacebookLogin';
+import {Redirect, Link, Switch, Route} from 'react-router-dom'
+import heymentorsplash from './Assets/heymentorsplash.png'
+import Register from './Register.jsx'
+class LoginForm extends React.Component {
+
+    onFacebookLogin = (loginStatus, resultObject) => {
+        if (loginStatus === true) {
+          this.setState({
+            username: resultObject.user.name
+          });
+        } else {
+          
+        }
+      }
+    constructor(props)
+    {
+        super(props);
+        this.state = {
+            username : '',
+            password:''
+        }
+      
+    }
+  
+    
+    componentDidMount()
+    {
+        console.log('mounted login!');
+        return (
+        <Redirect to="/"></Redirect>
+        )
+    }
+    handleEvent = (event, newValue) =>
+    {
+        alert(this.state.password);
+    }
+    
+    render()
+    {
+     //const {username} = this.state.username;
+
+     return (
+
+       
+
+        <Grid textAlign='center' style={{ height: '100vh' }} verticalAlign='middle'>
+           
+            <Grid.Column style={{ maxWidth: 500 }}>
+            <Image src={heymentorsplash}></Image>
+            <Header as='h2' color='teal' textAlign='center'>
+
+                Login to your account
+            </Header>
+
+            <Form size='large'>
+            
+                <Segment stacked>
+
+                <Form.Input fluid icon='user' iconPosition='left' placeholder='E-mail address' onChange = {(event,newValue) => this.setState({username:newValue})}/>
+
+                <Form.Input fluid icon='lock' iconPosition='left'placeholder='Password' type='password' onChange = {(event,newValue) => this.setState({password:newValue})}/>
 
 
 
-const LoginForm = () => (
+                <Button color='teal' fluid size='large' onClick={(event) => this.handleClick(event)}>
 
-  <Grid textAlign='center' style={{ height: '100vh' }} verticalAlign='middle'>
+                    Login
 
-    <Grid.Column style={{ maxWidth: 450 }}>
+                </Button>
+                <FacebookLogin onLogin={this.onFacebookLogin}>
+                    <Button color='facebook' fluid size='large'><Icon name='facebook'></Icon>Facebook Login</Button>
+                </FacebookLogin>
+                <Button color='white' fluid size='large'><Icon name='google'></Icon>Google Login</Button>
+                </Segment>
 
-      <Header as='h2' color='teal' textAlign='center'>
+            </Form>
 
-        <Image src='/Assets/heymentorsplash.png' /> Log-in to your account
+            <Message>
 
-      </Header>
+                New Mentee? <Link to="/register">Sign Up As a Mentee</Link> <br/>
+                New Mentor? <Link to='/registermentor'>Sign Up As a Mentor</Link>
+            </Message>
+            
+       
+            </Grid.Column>
+                
 
-      <Form size='large'>
+        </Grid>
 
-        <Segment stacked>
-
-          <Form.Input fluid icon='user' iconPosition='left' placeholder='E-mail address' />
-
-          <Form.Input
-
-            fluid
-
-            icon='lock'
-
-            iconPosition='left'
-
-            placeholder='Password'
-
-            type='password'
-
-          />
+        )
+    }
 
 
-
-          <Button color='teal' fluid size='large'>
-
-            Login
-
-          </Button>
-
-        </Segment>
-
-      </Form>
-
-      <Message>
-
-        New to us? <a href='#'>Sign Up</a>
-
-      </Message>
-
-    </Grid.Column>
-
-  </Grid>
-
-)
-
+}
 
 
 export default LoginForm

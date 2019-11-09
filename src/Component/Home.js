@@ -1,7 +1,16 @@
 import React, { Component } from 'react';
-import { Input, Menu, Segment, Image } from 'semantic-ui-react';
-import  {BrowserRouter as Router, Switch, Route, Link} from 'react-router-dom';
-export default class Home extends Component {
+import { Input, Menu, Segment, Image, Button } from 'semantic-ui-react';
+import { withRouter } from 'react-router-dom'
+
+class Home extends Component {
+  constuctor() {
+    this.routeChange = this.routeChange.bind(this);
+  }
+
+  routeChange() {
+    let path = `login`;
+    this.props.history.push(path);
+  }
     componentDidMount()
     {
       this.state.activeItem = 'home'
@@ -11,6 +20,9 @@ export default class Home extends Component {
   handleItemClick = (e, { name }) => {
       this.setState({ activeItem: name });
   }
+  login = (e, {name}) => {
+      this.routeChange();
+  }
 
   render() {
     const { activeItem } = this.state
@@ -18,31 +30,7 @@ export default class Home extends Component {
     
         return (
           <div>
-            
-            <Menu pointing>
-              <Menu.Item
-                name='home'
-                active={activeItem === 'home'}
-                onClick={this.handleItemClick}
-              />
-              <Menu.Item 
-                name='about'
-                active={activeItem === 'about'}
-                onClick={this.handleItemClick}
-              />
-              
-              <Menu.Item
-                name='messages'
-                active={activeItem === 'messages'}
-                onClick={this.handleItemClick}
-              />
-              <Menu.Item
-                name='mentors'
-                active={activeItem === 'friends'}
-                onClick={this.handleItemClick}
-              />
-              
-            </Menu>
+
     
             
           </div>
@@ -50,3 +38,4 @@ export default class Home extends Component {
       }
     
 }
+export default withRouter(Home)
